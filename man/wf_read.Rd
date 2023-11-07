@@ -54,6 +54,14 @@ wf_read(
 wf_read_header(path, rd_segments = TRUE, ...)
 }
 \arguments{
+\item{path}{The name of the WFDB record to be read, without any
+file extensions. If the argument contains any path delimiter characters,
+the argument will be interpreted as PATH/BASE_RECORD.
+Both relative and absolute paths are accepted.
+If the pn_dir parameter is set, this parameter should contain
+just the base record name, and the files fill be searched for
+remotely. Otherwise, the data files will be searched for in the local path.}
+
 \item{sample_from}{(integer or NULL)
 The starting sample number to read for all channels; 0-indexed.}
 
@@ -83,6 +91,11 @@ signal. Specifies whether to apply the skew to align the signals in the
 output variable (False), or to ignore the skew field and load in all
 values contained in the dat files unaligned (True).}
 
+\item{return_float_type}{The numpy array \code{dtype} of the returned signals.
+Options are: 64, 32, 16, and 8, where the value represents the
+numpy \code{int} or \code{float} \code{dtype.} Note that the value cannot be 8 when
+physical is True since there is no float8 format.}
+
 \item{force_channels}{Used when reading multi-segment variable layout
 records. Whether to update the layout specification record,
 and the converted Record object if m2s is True, to match the input
@@ -98,19 +111,6 @@ indices or names are not contained in the record, and no signal is returned.}
 \item{rd_segments}{Used when reading multi-segment headers.
 If \code{TRUE}, segment headers will also be read
 (into the record object’s segments field).}
-
-\item{record_name}{The name of the WFDB record to be read, without any
-file extensions. If the argument contains any path delimiter characters,
-the argument will be interpreted as PATH/BASE_RECORD.
-Both relative and absolute paths are accepted.
-If the pn_dir parameter is set, this parameter should contain
-just the base record name, and the files fill be searched for
-remotely. Otherwise, the data files will be searched for in the local path.}
-
-\item{return_res}{The numpy array \code{dtype} of the returned signals.
-Options are: 64, 32, 16, and 8, where the value represents the
-numpy \code{int} or \code{float} \code{dtype.} Note that the value cannot be 8 when
-physical is True since there is no float8 format.}
 }
 \value{
 A \code{Record} output

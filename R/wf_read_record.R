@@ -16,7 +16,7 @@ as_or_null = function(x, f) {
 #' Read a WFDB record and return the signal and record descriptors as
 #' attributes in a Record or MultiRecord object.
 #'
-#' @param record_name The name of the WFDB record to be read, without any
+#' @param path The name of the WFDB record to be read, without any
 #' file extensions. If the argument contains any path delimiter characters,
 #' the argument will be interpreted as PATH/BASE_RECORD.
 #' Both relative and absolute paths are accepted.
@@ -45,7 +45,7 @@ as_or_null = function(x, f) {
 #' signal. Specifies whether to apply the skew to align the signals in the
 #' output variable (False), or to ignore the skew field and load in all
 #' values contained in the dat files unaligned (True).
-#' @param return_res The numpy array `dtype` of the returned signals.
+#' @param return_float_type The numpy array `dtype` of the returned signals.
 #' Options are: 64, 32, 16, and 8, where the value represents the
 #' numpy `int` or `float` `dtype.` Note that the value cannot be 8 when
 #' physical is True since there is no float8 format.
